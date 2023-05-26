@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   security:
-    image: security
+    image: security:dev
     build:
       context: .
       dockerfile: ./Dockerfile
