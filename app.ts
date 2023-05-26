@@ -3,7 +3,7 @@ import {
   isHttpError,
   Router,
 } from "https://deno.land/x/oak@v12.4.0/mod.ts";
-import { index_get } from "./routes/index.ts";
+import { index } from "./routes/index.ts";
 
 const app = new Application();
 const router = new Router();
@@ -23,7 +23,7 @@ app.use(async (ctx, next) => {
 });
 
 router
-  .get("/", index_get)
+  .get("/", index.get)
   .get("/other", (ctx) => ctx.throw(415));
 
 app.use(router.routes());
