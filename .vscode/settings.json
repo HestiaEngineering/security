@@ -2,6 +2,7 @@
     "deno.enable": true,
     "deno.lint": true,
     "editor.formatOnSave": true,
+    "editor.tabSize": 4,
     "[typescript]": {
         "editor.defaultFormatter": "denoland.vscode-deno"
     }

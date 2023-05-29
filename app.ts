@@ -1,14 +1,10 @@
-import {
-  Application,
-  isHttpError,
-  Router,
-} from "https://deno.land/x/oak@v12.4.0/mod.ts";
+import { Application, Context, isHttpError, Next, Router } from "./deps.ts";
 import { index } from "./routes/index.ts";
 
 const app = new Application();
 const router = new Router();
 
-app.use(async (ctx, next) => {
+app.use(async (ctx: Context, next: Next) => {
   try {
     await next();
     if (ctx.response.status === 404) {
@@ -29,4 +25,5 @@ router
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-await app.listen({ port: 8000 });
+app.listen({ port: 8000, hostname: "::" });
+app.listen({ port: 8000, hostname: "127.0.0.1" });

@@ -1,9 +1,9 @@
-import { Context } from "https://deno.land/x/oak@v12.4.0/context.ts";
+import { Context } from "../deps.ts";
 
 export class index {
-  public static get(ctx: Context) {
-    ctx.response.type = "json";
-    ctx.response.body = {
+  public static get(context: Context) {
+    context.response.type = "json";
+    context.response.body = {
       "module": "security",
       "version": "alpha",
     };
