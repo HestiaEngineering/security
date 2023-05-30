@@ -1,5 +1,5 @@
 import { Application, Context, isHttpError, Next, Router } from "./deps.ts";
-import { index } from "./routes/index.ts";
+import { Index } from "./routes/index.ts";
 
 const app = new Application();
 const router = new Router();
@@ -19,7 +19,7 @@ app.use(async (ctx: Context, next: Next) => {
 });
 
 router
-  .get("/", index.get)
+  .get("/", Index.get)
   .get("/other", (ctx: Context) => ctx.throw(415));
 
 app.use(router.routes());
