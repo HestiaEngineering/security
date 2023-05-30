@@ -5,10 +5,10 @@
  */
 
 CREATE DATABASE `security` IF NOT EXISTS;
-CREATE SCHEMA `security` IF NOT EXISTS;
+CREATE SCHEMA `internal_api` IF NOT EXISTS;
 
-CREATE TABLE `internal_api` (
-    `id` uuid NOT NULL,
+CREATE TABLE `internal_api`.`api` (
+    `id` uuid NOT NULL DEFAULT uuid_generate_v4(),
     `name` varchar(255) NOT NULL,
     `description` varchar(255) NOT NULL,
     `status` varchar(255) NOT NULL,
