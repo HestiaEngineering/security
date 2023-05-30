@@ -20,7 +20,7 @@ app.use(async (ctx: Context, next: Next) => {
 
 router
   .get("/", index.get)
-  .get("/other", (ctx) => ctx.throw(415));
+  .get("/other", (ctx: Context) => ctx.throw(415));
 
 app.use(router.routes());
 app.use(router.allowedMethods());
