@@ -22,53 +22,28 @@ tags:
   - name: internal-api
     description: Internal API related routes
   - name: example
+security:
+  - ApiKeyAuth: []
 paths:
-  /internal-api/auth/{key}:
-    get:
-      tags:
-        - internal-api
-      summary: Authenticate internal api
-      description: Authenticate an Internal API
-      operationId: authAPI
-      responses:
-        "200":
-          description: Returns auth key information
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - requiredExample
-                properties:
-                  valid: 
-                    type: boolean
-                    example: true
-                  api_code:
-                    type: string
-                    example: fiscal_documents
-                  expiry_date: 
-                    type: string
-                    example: 2023-06-02T22:47:05Z
-
-    #post:
-    #  tags:
-    #    - example
-    #  summary: Creates a example
-    #  description: Creates a new example
-    #  operationId: createClient
-    #  requestBody:
-    #    content:
-    #      application/json:
-    #        schema:
-    #          $ref: "#/components/schemas/Example"
-#
-    #  responses:
-    #    "201":
-    #      description: Example created successfully
-    #    "409":
-    #      description: Example already exists
-    #    "422":
-    #      description: Invalid example data supplied
+  #post:
+  #  tags:
+  #    - example
+  #  summary: Creates a example
+  #  description: Creates a new example
+  #  operationId: createClient
+  #  requestBody:
+  #    content:
+  #      application/json:
+  #        schema:
+  #          $ref: "#/components/schemas/Example"
+  #
+  #  responses:
+  #    "201":
+  #      description: Example created successfully
+  #    "409":
+  #      description: Example already exists
+  #    "422":
+  #      description: Invalid example data supplied
   /asdasdas:
     get:
       tags:
@@ -99,17 +74,21 @@ paths:
         "422":
           description: Invalid example data supplied
 
-
 components:
+  securitySchemes:
+    APIKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
   schemas:
     Example:
       type: object
       required:
         - requiredExample
       properties:
-        requiredExample: 
+        requiredExample:
           type: string
           example: Example 1
-        example: 
+        example:
           type: string
           example: Example 2
