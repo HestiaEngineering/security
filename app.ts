@@ -1,6 +1,22 @@
 import { Application, Context, isHttpError, Next, Router } from "./deps.ts";
 import { Index } from "./routes/index.ts";
 
+// Check if stuff exists
+if (!Deno.env.get("DB_USER")) {
+  console.error("DB_USER not defined");
+} else if (!Deno.env.get("DB_PASSWORD")) {
+  console.error("DB_PASSWORD not defined");
+}
+
+// Implement keys (tbd)
+try {
+  await Deno.readTextFile("keys/test.txt");
+} catch (e) {
+  if (e instanceof Deno.errors.NotFound) {
+    console.error("file does not exists");
+  }
+}
+
 const app = new Application();
 const router = new Router();
 
@@ -25,5 +41,6 @@ router
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen({ port: 8000, hostname: "::" });
+// Docker doesn't support IPV6 by default
+//app.listen({ port: 8000, hostname: "::" });
 app.listen({ port: 8000, hostname: "127.0.0.1" });
